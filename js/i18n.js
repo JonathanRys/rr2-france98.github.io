@@ -1,47 +1,52 @@
-let lang = 'en',
-		curTranslate = null;
+'use strict';
 
-const $elements = document.querySelectorAll("[data-i18n]");
+const isDev = false;
 
-try {
-  const userLang = navigator.language || navigator.userLanguage,
-				wantLang = localStorage.getItem('wantLang');
-
-	lang = wantLang || userLang.split('-')[0];
-} catch(error) {}
-
-/*localStorage.setItem('myCat', 'Tom');
-localStorage.clear();*/
+let lang = 'en';
+let curTranslate = null;
 
 const replaceText = (el) => {
-	const key = el.getAttribute('i18n-key');
+	const key = el.dataset.i18nKey;
 	el.innerHTML = curTranslate[key] || key;
 }
 
-const loadLang = () => {
-	if(['en', 'fr', 'es'].indexOf(lang) === -1)
+const loadLang = (lang='en') => {
+	if (['en', 'fr', 'es'].indexOf(lang) === -1)
 		lang = 'en';
 
-	fetch(`i18n/${i18n_file}-${lang}.json`)
-  .then(response => response.json())
-  .then(translate => {
-		curTranslate = translate;
-
-		$elements.forEach(el => replaceText(el));
-	});
+	fetch(`i18n/${i18n_file}-${lang}.json`).then(
+		response => response.json()
+	).then(
+	    translate => {
+		    curTranslate = translate;
+    		document.querySelectorAll("[data-i18n-key]").forEach(el => replaceText(el));
+	    }
+	);
 }
 
-if(lang !== "fr")
-	loadLang();
+try {
+    const userLang = navigator.language || navigator.userLanguage;
+    const wantLang = localStorage.getItem('wantLang');
 
+	lang = wantLang || userLang.split('-')[0];
+} catch(error) {
+	if (isDev) {
+    	console.log(error);
+    }
+}
 
-// Add listeners
-const $i18nSwitchers = document.querySelectorAll('[i18n-switcher]');
-[...$i18nSwitchers].forEach($switcher => $switcher.addEventListener('click', e => {
-	lang = e.target.getAttribute('i18n-switcher');
-	loadLang();
+if (lang !== "fr") {
+	loadLang(lang);
+}
 
-	try {
-		localStorage.setItem('wantLang', lang);
-	} catch(error) {}
-}));
+const switchers = document.querySelector('#switchers');
+switchers.addEventListener('click', e => {
+	const lang = e.target.dataset.i18nSwitcher;
+	if (lang){
+	    loadLang(lang);
+
+		 if (window.localStorage) {
+			localStorage.setItem('wantLang', lang);
+		}
+	}
+})
