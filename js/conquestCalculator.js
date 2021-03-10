@@ -8,33 +8,30 @@
 */
 class Calculator {
 	constructor() {
-		// Show console info message
-		console.log('%c Look at "calc" variable to play with this script ', 'background: red; color: #222; font-size: 32px;');
-
 		// Save DOM render output
 		[
-			'skullTeam',
-			'skullOpponent',
-			'powerTeam',
-			'powerOpponent',
-			'attackdefTeam',
-			'attackdefOpponent'
+			'skull_team',
+			'skull_opponent',
+			'power_team',
+			'power_opponent',
+			'attackdef_team',
+			'attackdef_opponent'
 		].forEach(k => {
 			this[k] = document.getElementById(k);
 		});
 
 		// Set default numeric value
 		[
-			'skullWinTeam',
-			'skullWinOpponent',
-			'nbPlayerTeam',
-			'nbPlayerOpponent',
-			'nbTroopTeam',
-			'nbTroopOpponent',
-			'attackTeamHero',
-			'attackOpponentHero',
-			'defTeamHero',
-			'defOpponentHero',
+			'skull_win_team',
+			'skull_win_opponent',
+			'nb_player_team',
+			'nb_player_opponent',
+			'nb_troop_team',
+			'nb_troop_opponent',
+			'attack_team_hero',
+			'attack_opponent_hero',
+			'def_team_hero',
+			'def_opponent_hero',
 			'team_tower',
 			'opponent_tower'
 		].forEach(k => {
@@ -42,10 +39,10 @@ class Calculator {
 		});
 
 		[
-			'attackTeamTroop',
-			'attackOpponentTroop',
-			'defTeamTroop',
-			'defOpponentTroop',
+			'attack_team_troop',
+			'attack_opponent_troop',
+			'def_team_troop',
+			'def_opponent_troop',
 			'team_power',
 			'opponent_power'
 		].forEach(k => {
@@ -53,16 +50,13 @@ class Calculator {
 		});
 
 		// Set others default
-		this.timeHour = 23;
-		this.timeMinute = 0;
+		this.time_hour = 23;
+		this.time_minute = 0;
 		this.attacker = "team";
-		this.towerLevel = 1;
+		this.tower_level = 1;
 		this.ground = "0.7;1.3";
 
 		// CONST
-		this.const_timeRemainingData = [24, 10];
-		this.const_timeModifierData = [8, 1];
-
 		this.const_basedHeroesValue = 2250;
 		this.const_basedAttackHeroesValue = 75;
 
@@ -79,18 +73,22 @@ class Calculator {
 		this.render();
 	}
 
+	getTimeMatrix() {
+	    return  [
+			[24, 10],
+			[8, 1],
+			[this.time_hour + (this.time_minute / 60), null]
+		];
+	}		
+
 	render() {
 		// Time remaining (Hours)
-		const d2 = this.timeHour + (this.timeMinute / 60);
+		const d2 = this.time_hour + (this.time_minute / 60);
 
 		// Time modifier
 		const e2Calc = regression(
 			'polynomial', 
-			[
-			    this.const_timeRemainingData, 
-			    this.const_timeModifierData, 
-			    [d2, null]
-			],
+			this.getTimeMatrix(),
 			1
 		);
 
@@ -98,74 +96,79 @@ class Calculator {
 		    e2Calc.points[2][1] : 
 		    1;
 
-		console.log('-------------- e2', e2);
+		// Calculate Attack/Defense Ratings
+		let totalAttackValue = 0;
+		let totalDefenseValue = 0;
 
 		// Terrain modifier
 		const groundAttacker = parseFloat(this.ground.split(';')[0]);
 		const groundDefender = parseFloat(this.ground.split(';')[1]);
 
-		// Rating
-		let attackdefTeam = 0;
-		let attackdefOpponent = 0;
+		const towerBonus = tower => groundDefender * this.tower_level * (tower + 1);
 
-		const towerBonus = tower => groundDefender * this.towerLevel * (tower + 1);
+        if (this.attacker == "team") {
+            // Calculate attack ratings
+            const heroAttackValue = this.nb_player_team * (this.const_basedAttackHeroesValue + this.attack_team_hero);
+            const troopAttackValue = this.nb_troop_team * this.attack_team_troop;
+            
+            totalAttackValue = Math.round((heroAttackValue + troopAttackValue) * groundAttacker);
 
-		if(this.attacker == "team") {
-			// Calculate attack ratings
-			const heroAttackValue = this.nbPlayerTeam * (this.const_basedAttackHeroesValue + this.attackTeamHero);
-			const troopAttackValue = this.nbTroopTeam * this.attackTeamTroop;
-			// Calculate defense ratings
-			const heroDefValue = this.nbPlayerOpponent * (this.const_basedAttackHeroesValue + this.defOpponentHero);
-			const troopDefValue = this.nbTroopOpponent * this.defOpponentTroop;
+            // Calculate defense ratings
+            const heroDefenseValue = this.nb_player_opponent * (this.const_basedAttackHeroesValue + this.def_opponent_hero);
+            const troopDefenseValue = this.nb_troop_opponent * this.def_opponent_troop;
+            
+            totalDefenseValue = Math.round((heroDefenseValue + troopDefenseValue) * towerBonus(this.opponent_tower));
 
-			attackdefTeam = Math.round((heroAttackValue + troopAttackValue) * groundAttacker);
-			attackdefOpponent = Math.round((heroDefValue + troopDefValue) * towerBonus(this.opponent_tower));
+        } else {
+            // Calculate attack ratings
+            const heroAttackValue = this.nb_player_team * (this.const_basedAttackHeroesValue + this.def_team_hero);
+            const troopAttackValue = this.nb_troop_team * this.def_team_troop;
 
-		} else {
-			// Calculate attack ratings
-			const heroAttackValue = this.nbPlayerTeam * (this.const_basedAttackHeroesValue + this.defTeamHero);
-			const troopAttackValue = this.nbTroopTeam * this.defTeamTroop;
-			// Calculate defense ratings
-			const heroDefValue = this.nbPlayerOpponent * (this.const_basedAttackHeroesValue + this.attackOpponentHero);
-			const troopDefValue = this.nbTroopOpponent * this.attackOpponentTroop;
+            totalAttackValue = Math.round((heroAttackValue + troopAttackValue) * towerBonus(this.team_tower));
 
-			attackdefTeam = Math.round((heroAttackValue + troopAttackValue) * towerBonus(this.team_tower));
-			attackdefOpponent = Math.round((heroDefValue + troopDefValue) * groundAttacker);
-		}
+            // Calculate defense ratings
+            const heroDefenseValue = this.nb_player_opponent * (this.const_basedAttackHeroesValue + this.attack_opponent_hero);
+            const troopDefenseValue = this.nb_troop_opponent * this.attack_opponent_troop;
+            
+            totalDefenseValue = Math.round((heroDefenseValue + troopDefenseValue) * groundAttacker);
+        }
 
-		this.attackdefTeam.innerText = this.formatNumber(attackdefTeam);
-		this.attackdefOpponent.innerText = this.formatNumber(attackdefOpponent);
+        this.attackdef_team.innerText = this.formatNumber(totalAttackValue);
+        this.attackdef_opponent.innerText = this.formatNumber(totalDefenseValue);
 
-		// SV skulls required
-		const svBased = (this.nbPlayerTeam + this.nbPlayerOpponent) * this.const_basedHeroesValue;
-		const svBasedTeam = svBased * attackdefOpponent / attackdefTeam * e2;
-		const svBasedOpponent = svBased * attackdefTeam / attackdefOpponent * e2;
+        // Calculate SV
+        const svBased = (this.nb_player_team + this.nb_player_opponent) * this.const_basedHeroesValue;
+        const svBasedTeam = svBased * totalDefenseValue / totalAttackValue * e2;
+        const svBasedOpponent = svBased * totalAttackValue / totalDefenseValue * e2;
 
-		const skullTeam = (this.attacker == "team") ? 
-		    Math.round(svBasedTeam - this.skullWinTeam + this.skullWinOpponent) : 
-		    Math.round(svBasedTeam + this.skullWinOpponent - this.skullWinTeam);
-		const skullOpponent = (this.attacker == "team") ?
-		    Math.round(svBasedOpponent + this.skullWinTeam - this.skullWinOpponent) :
-		    Math.round(svBasedOpponent - this.skullWinOpponent + this.skullWinTeam);
+        const skull_team = (this.attacker == "team") ? 
+            Math.round(svBasedTeam - this.skull_win_team + this.skull_win_opponent) : 
+            Math.round(svBasedTeam + this.skull_win_opponent - this.skull_win_team);
+        const skull_opponent = (this.attacker == "team") ?
+            Math.round(svBasedOpponent + this.skull_win_team - this.skull_win_opponent) :
+            Math.round(svBasedOpponent - this.skull_win_opponent + this.skull_win_team);
 
-		this.skullTeam.innerText = this.formatNumber(skullTeam);
-		this.skullOpponent.innerText = this.formatNumber(skullOpponent);
+        this.skull_team.innerText = this.formatNumber(skull_team);
+        this.skull_opponent.innerText = this.formatNumber(skull_opponent);
 
-		// Energy cost
-		const powerTeam = Math.round((16 + 16 * attackdefOpponent / attackdefTeam) * this.team_power);
-		const powerOpponent = Math.round((16 + 16 * attackdefTeam / attackdefOpponent) * this.opponent_power);
+        // Calculate Energy cost
+        const power_team = Math.round((16 + 16 * totalDefenseValue / totalAttackValue) * this.team_power);
+        const power_opponent = Math.round((16 + 16 * totalAttackValue / totalDefenseValue) * this.opponent_power);
 
-		this.powerTeam.innerText = this.formatNumber(powerTeam);
-		this.powerOpponent.innerText  = this.formatNumber(powerOpponent);
+        this.power_team.innerText = this.formatNumber(power_team);
+        this.power_opponent.innerText  = this.formatNumber(power_opponent);
 	}
 
 	formatNumber(num) {
-		if(!num || isNaN(num))
+		if (!num || isNaN(num))
 			return '0';
 
 		return num.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ' ');
 	}
 }
+
+// Create calculator instance
+const calc = new Calculator();
 
 const update = e => {
     /*
@@ -178,11 +181,8 @@ const update = e => {
         e.target.type &&
         ['select', 'input'].indexOf(e.target.type.toLowerCase()) !== -1
     ) {
-        return;
+        return true;
     }
-
-    // Create calculator instance
-	const calc = new Calculator();
 
     calc[e.target.id] = (!isNaN(e.target.value)) ? parseFloat(e.target.value) : e.target.value;
     calc.render();
@@ -190,10 +190,13 @@ const update = e => {
     // Set hash to share link
     const newHash = e.target.id + '=' + calc[e.target.id];
     const replaceRegex = new RegExp(e.target.id + '=([a-z0-9;.])*', 'gi');
-    if (document.location.hash.indexOf(e.target.id + '=') === -1)
+    if (document.location.hash.indexOf(e.target.id + '=') === -1) {
         document.location.hash += '&' + newHash;
-    else
+    } else {
         document.location.hash = document.location.hash.replace(replaceRegex, newHash)
+    }
+
+    return false;
 };
 
 // Attach change event handler for form inputs

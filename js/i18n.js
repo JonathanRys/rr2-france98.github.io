@@ -14,7 +14,7 @@ const loadLang = (lang='en') => {
 	if (['en', 'fr', 'es'].indexOf(lang) === -1)
 		lang = 'en';
 
-	fetch(`i18n/${i18n_file}-${lang}.json`).then(
+	fetch(`/i18n/${i18n_file}-${lang}.json`).then(
 		response => response.json()
 	).then(
 	    translate => {
@@ -40,8 +40,8 @@ if (lang !== "fr") {
 }
 
 const switchers = document.querySelector('#switchers');
-switchers.addEventListener('click', e => {
-	const lang = e.target.dataset.i18nSwitcher;
+switchers.addEventListener('change', e => {
+	const lang = e.target.value;
 	if (lang){
 	    loadLang(lang);
 
