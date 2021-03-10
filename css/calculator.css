@@ -17,13 +17,15 @@ header {
 }
 select,
 input {
-    font: 12px/16px "Arial", "Helvetica", sans-serif;
-    width: 100%;
     border-radius: 5px;
+    font: 12px/16px "Arial", "Helvetica", sans-serif;
+    max-width: 150px;
     padding: 3px 5px;
+    width: 100%;
 }
 select {
     border-width: 2px;
+    max-width: 165px;
     width: 110%;
 }
 label {
