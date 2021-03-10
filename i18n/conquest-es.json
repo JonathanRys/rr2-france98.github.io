@@ -18,12 +18,12 @@
 	"ground_sandy_hills": "Colinas de arena (0.9 / 0.7)",
 	"tower_level": "Nivel de la torre",
 	"technologies": "Tecnologías",
-	"attack_value_troops": "Valor de ataque<br />Tropas +1",
-	"defense_value_troops": "Valor de defensa<br />Tropas +1",
-	"attack_value_heroes": "Valor de ataque<br />Heroes +5",
-	"defense_value_heroes": "Valor de defensa<br />Heroes +5",
-	"defense_modifier_watchtower": "Modificador de defensa <br /> Torres de vigilancia +%",
-	"energy_cost_war": "Costo energético<br />Guerra -%",
+	"attack_value_troops": "Valor de ataque Tropas +1",
+	"defense_value_troops": "Valor de defensa Tropas +1",
+	"attack_value_heroes": "Valor de ataque Heroes +5",
+	"defense_value_heroes": "Valor de defensa Heroes +5",
+	"defense_modifier_watchtower": "Torres modificadoras de defensa +%",
+	"energy_cost_war": "Costo energético Guerra -%",
 	"discord": "Únete a nosotros en Discord",
 	"sourcecode": "Ver el código fuente"
 }

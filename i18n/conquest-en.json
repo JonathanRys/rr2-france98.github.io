@@ -18,12 +18,12 @@
 	"ground_sandy_hills": "Sandy hills (0.9 / 0.7)",
 	"tower_level": "Tower level",
 	"technologies": "Technologies",
-	"attack_value_troops": "Attack value<br />Troops +1",
-	"defense_value_troops": "Defense value<br />Troops +1",
-	"attack_value_heroes": "Attack value<br />Heroes +5",
-	"defense_value_heroes": "Defense value<br />Heroes +5",
-	"defense_modifier_watchtower": "Defense modifier <br /> Watchtowers +%",
-	"energy_cost_war": "Energy cost<br />War -%",
+	"attack_value_troops": "Attack value Troops +1",
+	"defense_value_troops": "Defense value Troops +1",
+	"attack_value_heroes": "Attack value Heroes +5",
+	"defense_value_heroes": "Defense value Heroes +5",
+	"defense_modifier_watchtower": "Defense modifier towers +%",
+	"energy_cost_war": "Energy cost War -%",
 	"discord": "Join us on Discord",
 	"sourcecode": "View the source code"
 }

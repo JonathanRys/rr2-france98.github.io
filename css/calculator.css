@@ -1,0 +1,116 @@
+@charset 'utf-8';
+
+html, body {
+    margin: 0;
+    padding: 0;
+    font: 16px/28px "Arial", "Helvetica", sans-serif;
+}
+body {
+    overflow-y: scroll;
+}
+a {
+    text-decoration: none;
+}
+header {
+    padding: 20px;
+    text-align: center;
+}
+select,
+input {
+    font: 12px/16px "Arial", "Helvetica", sans-serif;
+    width: 100%;
+    border-radius: 5px;
+    padding: 3px 5px;
+}
+select {
+    border-width: 2px;
+    width: 110%;
+}
+label {
+    display: block;
+    font-size: 16px;
+    line-height: 28px;
+    overflow: visible;
+    white-space: nowrap;
+}
+footer {
+    padding: 40px;
+    text-align: center;
+}
+.logo {
+    /**/
+}
+.output {
+    text-align: center;
+}
+.bold {
+    font-weight: bold;
+}
+.left {
+    align-self: flex-start;
+    text-align: left;
+}
+.right {
+    align-self: flex-end;
+    text-align: right;
+}
+.flex-table,
+.flex-row,
+.flex-cell {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+.flex-table {
+    flex-direction: column;
+}
+.flex-row {
+    position: relative;
+}
+.flex-column {
+    justify-content: center;
+    margin: 5px 15px;
+    min-width: 150px;
+    max-width: 150px;
+}
+.flex-column:first-of-type {
+    min-width: 230px;
+    max-width: 230px;
+}
+.flex-column.wide {
+    min-width: 330px;
+    max-width: 330px;
+}
+.flex-cell {
+    padding: 10px;
+}
+.center {
+    text-align: center;
+}
+.spacer {
+    height: 20px;
+}
+.toggle {
+    color: #807fe2;
+    cursor: pointer;
+    font-size: 12px;
+}
+.hidden {
+    display: none;
+}
+/* Icons */
+.icon {
+    position: absolute;
+    right: 165px;
+    width: 25px;
+    height: 30px;
+}
+.skull {
+    background-image: url("/img/skull.png");
+}
+.energy {
+    background-image: url("/img/energy.png");
+}
+.rating {
+    background-image: url("/img/rating.png");
+}

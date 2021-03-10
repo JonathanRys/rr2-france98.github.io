@@ -18,12 +18,12 @@
 	"ground_sandy_hills": "Collines sableuses (0.9 / 0.7)",
 	"tower_level": "Niveau tour",
 	"technologies": "Technologies",
-	"attack_value_troops": "Valeur d’attaque<br />Troupes +1",
-	"defense_value_troops": "Valeur de défense<br />Troupes +1",
-	"attack_value_heroes": "Valeur d’attaque<br />Héros +5",
-	"defense_value_heroes": "Valeur de défense<br />Héros +5",
-	"defense_modifier_watchtower": "Modificateur de défense<br />Tours de guet +%",
-	"energy_cost_war": "Coût en énergie<br />Guerre -%",
+	"attack_value_troops": "Valeur d’attaque Troupes +1",
+	"defense_value_troops": "Valeur de défense Troupes +1",
+	"attack_value_heroes": "Valeur d’attaque Héros +5",
+	"defense_value_heroes": "Valeur de défense Héros +5",
+	"defense_modifier_watchtower": "Modificateur de défense de Tour +%",
+	"energy_cost_war": "Coût en énergie Guerre -%",
 	"discord": "Rejoignez-nous sur Discord",
 	"sourcecode": "Voir le code source"
 }
