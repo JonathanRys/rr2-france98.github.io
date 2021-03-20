@@ -1,5 +1,10 @@
 {
 	"conquest_calculator": "Calculateur de Conquête",
+	"skull_needed_sv": "Crânes nécessaires (SV)",
+	"energy_per_fight": "Énergie par combat",
+	"rating": "Le classement (Attaque / Défense)",
+	"attacker": "Attaquant",
+	"defender": "Défenseur",
 	"you": "Vous",
 	"opponent": "Adversaire",
 	"settings": "Paramètres",

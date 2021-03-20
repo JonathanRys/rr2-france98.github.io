@@ -1,5 +1,10 @@
 {
 	"conquest_calculator": "Calculadora de conquista",
+	"skull_needed_sv": "Se necesitan cráneos (SV)",
+	"energy_per_fight": "Energía por pelea",
+	"rating": "Clasificación (Ataque / Defensa)",
+	"attacker": "Agresor",
+	"defender": "Defensor",
 	"you": "Vosotras",
 	"opponent": "Adversario",
 	"settings": "Configuraciones",

@@ -27,26 +27,14 @@ const loadLang = (lang='en') => {
 try {
     const userLang = navigator.language || navigator.userLanguage;
     const wantLang = localStorage.getItem('wantLang');
+    const [uLang, uCountry] = userLang.split('-');
 
-	lang = wantLang || userLang.split('-')[0];
+	lang = wantLang || uLang;
+	if (lang === 'en' && uCountry === 'US') {
+		lang = 'us';
+	}
 } catch(error) {
 	if (isDev) {
     	console.log(error);
     }
 }
-
-if (lang !== "fr") {
-	loadLang(lang);
-}
-
-const switchers = document.querySelector('#switchers');
-switchers.addEventListener('change', e => {
-	const lang = e.target.value;
-	if (lang){
-	    loadLang(lang);
-
-		 if (window.localStorage) {
-			localStorage.setItem('wantLang', lang);
-		}
-	}
-})
