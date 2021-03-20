@@ -8,13 +8,20 @@ html, body {
 }
 body {
     overflow-y: scroll;
+    padding-top: 80px;
 }
 a {
     text-decoration: none;
 }
 header {
+    background-color: white;
+    height: 80px;
+    margin-top: -80px;
     padding: 20px;
+    position: fixed;
     text-align: center;
+    width: 100%;
+    z-index: 999;
 }
 select,
 input {
@@ -113,12 +120,12 @@ footer {
     border: 1px solid lightgray;
     height: 2em;
     position: absolute;
-    right: 163px;
+    right: 166px;
     width: 2em;
 }
 #language-dropdown {
-    margin-top: 25px;
-    margin-bottom: -5px;
+    margin-top: 24px;
+    margin-bottom: -4px;
 }
 /* Icons */
 .icon {
@@ -126,7 +133,7 @@ footer {
     background-size: 100%;
     background-position: center;
     position: absolute;
-    right: 165px;
+    right: 167px;
     width: 25px;
     height: 30px;
 }
