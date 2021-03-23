@@ -1,7 +1,7 @@
 {
 	"conquest_calculator": "Conquest Calculator",
-	"hours": "Hours left",
-	"minutes": "Minutes left",
+	"hours": "Hours (24)",
+	"minutes": "Minutes (00)",
 	"skull_needed_sv": "Skulls needed (SV)",
 	"energy_per_fight": "Energy per fight",
 	"rating": "Rating (Attack / Defense)",

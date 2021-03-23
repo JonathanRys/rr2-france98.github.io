@@ -1,7 +1,7 @@
 {
 	"conquest_calculator": "Calculadora de conquista",
-	"hours": "Horas restantes",
-	"minutes": "Minutos restantes",
+	"hours": "Horas (24)",
+	"minutes": "Minutos (00)",
 	"skull_needed_sv": "Se necesitan cráneos (SV)",
 	"energy_per_fight": "Energía por pelea",
 	"rating": "Clasificación (Ataque / Defensa)",
