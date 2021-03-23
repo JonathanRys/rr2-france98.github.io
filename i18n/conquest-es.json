@@ -1,5 +1,7 @@
 {
 	"conquest_calculator": "Calculadora de conquista",
+	"hours": "Horas restantes",
+	"minutes": "Minutos restantes",
 	"skull_needed_sv": "Se necesitan cráneos (SV)",
 	"energy_per_fight": "Energía por pelea",
 	"rating": "Clasificación (Ataque / Defensa)",
@@ -11,8 +13,8 @@
 	"time_left": "Tiempo restante",
 	"who_attacking": "¿Quién está atacando?",
 	"number_skull_won": "Número de calaveras ganadas",
-	"number_heroes": "Numero de Heroes",
-	"number_troops": "Numero de Tropas",
+	"number_heroes": "Número de Heroes",
+	"number_troops": "Número de Tropas",
 	"ground": "Suelo",
 	"ground_forest": "Bosque (0.7 / 1.3)",
 	"ground_meadow": "Prado (1 / 0.8)",

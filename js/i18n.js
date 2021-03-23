@@ -7,7 +7,16 @@ let curTranslate = null;
 
 const replaceText = (el) => {
 	const key = el.dataset.i18nKey;
-	el.innerHTML = curTranslate[key] || key;
+	switch (el.type) {
+	case 'email':
+	case 'number':
+	case 'text':
+		// For certain inputs we want to switch the placeholder text
+	    el.placeholder = curTranslate[key] || key;
+	    break;
+	default:
+	    el.innerHTML = curTranslate[key] || key;
+    }
 }
 
 const loadLang = (lang='en') => {

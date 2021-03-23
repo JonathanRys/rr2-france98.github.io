@@ -8,124 +8,44 @@ html, body {
 }
 body {
     overflow-y: scroll;
-    padding-top: 80px;
+    margin-top: 5em; /* For header */
 }
 a {
     text-decoration: none;
 }
+h1 {
+    font-family: 'Berkshire Swash', cursive;
+}
 header {
     background-color: white;
-    height: 80px;
-    margin-top: -80px;
-    padding: 20px;
+    height: 4em;
     position: fixed;
-    text-align: center;
     width: 100%;
     z-index: 999;
-}
-select,
-input {
-    font: 12px/16px "Arial", "Helvetica", sans-serif;
-    max-width: 150px;
-    padding: 3px 5px;
-}
-select {
-    max-width: 165px;
-}
-label {
-    display: block;
-    font-size: 16px;
-    line-height: 28px;
-    overflow: visible;
-    white-space: nowrap;
+    top: 0;
 }
 footer {
     padding: 40px;
     text-align: center;
 }
-.logo {
-    /**/
+#container {
+    max-width: 1200px;
 }
-.output {
-    text-align: center;
-}
-.bold {
-    font-weight: bold;
-}
-.left {
-    align-self: flex-start;
-    text-align: left;
-}
-.right {
-    align-self: flex-end;
-    text-align: right;
-}
-.flex-table,
-.flex-row,
-.flex-cell {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-}
-.flex-table {
-    flex-direction: column;
-}
-.flex-row {
-    position: relative;
-}
-.flex-column {
-    margin: 5px 15px;
-    min-width: 150px;
-    max-width: 150px;
-}
-.accordion-item:last-of-type .accordion-collapse {
-    border: none;
-}
-.flex-column:first-of-type {
-    min-width: 230px;
-    max-width: 230px;
-}
-.flex-column.wide {
-    min-width: 330px;
-    max-width: 330px;
-}
-.flex-column.full {
-    min-width: 595px;
-    max-width: 595px;
-}
-.flex-cell {
-    padding: 10px;
-}
-.center {
-    text-align: center;
-}
-.spacer {
-    height: 20px;
-}
-.toggle {
-    color: #807fe2;
-    cursor: pointer;
-    font-size: 12px;
-    margin: -5px; /* Increase the clickable area */
-    padding: 5px; /* Increase the clickable area */
-}
-.hidden {
-    display: none;
-}
-.center-button {
-    background-image: url('../img/exchange.png');
+.header {
+    background-image: url('../img/conquest_bg_teasing-1280x640.png');
     background-position: center;
     background-repeat: no-repeat;
-    background-size: contain;
-    border: 1px solid lightgray;
-    height: 2em;
-    position: absolute;
-    right: 166px;
-    width: 2em;
-}
-#language-dropdown {
-    margin-top: 24px;
-    margin-bottom: -4px;
+    background-size: cover;
+    font-family: 'Berkshire Swash', cursive;
+    height: 100%;
+    margin: auto;
+    max-width: 1200px;
+    padding: 0.75em;
+    text-align: center;
+    text-shadow: 1px 1px 1px lightgray,
+                1px -1px 1px lightgray,
+                -1px 1px 1px lightgray,
+               -1px -1px 1px lightgray;
 }
 /* Icons */
 .icon {
@@ -133,17 +53,29 @@ footer {
     background-size: 100%;
     background-position: center;
     position: absolute;
-    right: 167px;
+    right: 46%;
     width: 25px;
     height: 30px;
 }
-/*  */
 .button {
     border: 1px solid darkgray;
     padding: 0px 3px;
     background-size: 50%;
     border-radius: 5px;
     right: 160px;
+}
+.output {
+    text-align: center;
+    padding: 5px;
+}
+.form-group {
+    position: relative;
+}
+.bold {
+    font-weight: bold;
+}
+.center {
+    text-align: center;
 }
 .skull {
     background-image: url("/img/skull.png");
@@ -154,6 +86,18 @@ footer {
 .rating {
     background-image: url("/img/rating.png");
 }
+.center-button {
+    background-image: url('../img/exchange.png');
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: contain;
+    border: 1px solid lightgray;
+    height: 2em;
+    position: absolute;
+    right: 46%;
+    top: 3em;
+    width: 2em;
+}
 .exchange {
     background-image: url("/img/exchange.png");
 }
@@ -162,6 +106,9 @@ footer {
     min-width: 100%;
 }
 /* Bootstrap style overrides */
+.accordion-body {
+    padding: 1rem 0;
+}
 .accordion-button {
     background-color: rgba(0,0,0,.125);
 }
@@ -176,4 +123,16 @@ footer {
 .accordion-flush .accordion-item:first-of-type .accordion-button,
 .accordion-flush .accordion-item:last-of-type .accordion-button.collapsed {
     border-radius: 5px;
+}
+.accordion-item:last-of-type .accordion-collapse {
+    border: none;
+}
+@media only screen and (min-width: 768px) {
+    .icon {
+        right: 32.25%;
+    }
+    .center-button {
+        right: 32.25%;
+        top: 0;
+    }
 }

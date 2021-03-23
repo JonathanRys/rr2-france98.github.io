@@ -1,5 +1,7 @@
 {
 	"conquest_calculator": "Calculateur de Conquête",
+	"hours": "Heures qui reste",
+	"minutes": "Minutes restant",
 	"skull_needed_sv": "Crânes nécessaires (SV)",
 	"energy_per_fight": "Énergie par combat",
 	"rating": "Le classement (Attaque / Défense)",
