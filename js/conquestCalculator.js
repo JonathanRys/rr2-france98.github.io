@@ -166,38 +166,3 @@ class Calculator {
 		return num.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ' ');
 	}
 }
-
-// Create calculator instance
-const calc = new Calculator();
-
-const update = e => {
-    /*
-    Calculates the new values and updates the UI
-    */
-
-    // Ignore the accordion checkbox
-    if (
-        e.target.id.indexOf('accordion') !== -1 || 
-        e.target.type &&
-        ['select', 'input'].indexOf(e.target.type.toLowerCase()) !== -1
-    ) {
-        return true;
-    }
-
-    calc[e.target.id] = (!isNaN(e.target.value)) ? parseFloat(e.target.value) : e.target.value;
-    calc.render();
-
-    // Set hash to share link
-    const newHash = e.target.id + '=' + calc[e.target.id];
-    const replaceRegex = new RegExp(e.target.id + '=([a-z0-9;.])*', 'gi');
-    if (document.location.hash.indexOf(e.target.id + '=') === -1) {
-        document.location.hash += '&' + newHash;
-    } else {
-        document.location.hash = document.location.hash.replace(replaceRegex, newHash)
-    }
-
-    return false;
-};
-
-// Attach change event handler for form inputs
-document.querySelector('#container').addEventListener('change', update);

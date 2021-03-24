@@ -98,6 +98,14 @@ footer {
     top: 3em;
     width: 2em;
 }
+.slider {
+    margin-top: 5px;            
+    -webkit-transform: scaleX(-1);
+    transform: scaleX(-1);
+}
+.timer {
+    padding: 4px;
+}
 .exchange {
     background-image: url("/img/exchange.png");
 }
