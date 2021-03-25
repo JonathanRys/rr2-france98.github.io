@@ -52,17 +52,17 @@ const makeClockTimer = (hour, minute, callback) => {
 
     return () => {
         if (hour || minute) {
-            // Call the callback
-            if (callback && typeof callback === 'function') {
-                callback(hour, minute);
-            }
-
             // Decrement the hour counter and reset minutes if needed
             if (!minute) {
                 minute = 60;
                 hour--;
             }
             minute--;
+
+            // Call the callback
+            if (callback && typeof callback === 'function') {
+                callback(hour, minute);
+            }
         } else {
             // Out of time
             if (callback && typeof callback === 'function') {
@@ -82,14 +82,15 @@ const updateEveryFiveSeconds = () => {
 
     const timer = document.querySelector('#timer');
     let interval = 11;
+    // clear any running intervals before setting a new one
+    clearInterval(clockIntervalId);
     clockIntervalId = setInterval(() => {
-        setIcon(interval--);
         if (interval < 0) {
             clearInterval(clockIntervalId);
+            return
         }
+        setIcon(interval--);
     }, 5000);
-
-    return clockIntervalId;
 };
 
 const updateEveryMinute = () => {
@@ -121,11 +122,11 @@ const updateEveryMinute = () => {
 
     // Set the icon
     setIcon(0);
-    clockIntervalId = updateEveryFiveSeconds();
+    updateEveryFiveSeconds();
 
     const clockHandler = (hour, minute) => {
         updateTimerUi(hour, minute);
-        clockIntervalId = updateEveryFiveSeconds();
+        updateEveryFiveSeconds();
     };
 
     intervalId = setInterval(makeClockTimer(startHour, startMinute, clockHandler), MINUTE);
