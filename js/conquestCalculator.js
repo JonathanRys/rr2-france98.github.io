@@ -160,8 +160,13 @@ class Calculator {
 	}
 
 	formatNumber(num) {
-		if (!num || isNaN(num))
-			return '0';
+		if (!num || isNaN(num)) {
+			return 0;
+		}
+
+        if (num === Infinity) {
+        	return '∞';
+        }
 
 		return num.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ' ');
 	}
