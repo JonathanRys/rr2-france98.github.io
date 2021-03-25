@@ -63,10 +63,10 @@ class Calculator {
 		// Set values based on hash
 		const that = this;
 		document.location.hash.split('&').forEach(hash => {
-			const hashSplited = hash.split('=');
-			if(hashSplited.length == 2) {
-				that[hashSplited[0]] = (!isNaN(hashSplited[1])) ? parseFloat(hashSplited[1]) : hashSplited[1];
-				document.getElementById(hashSplited[0]).value = hashSplited[1];
+			const [hashKey, hashValue] = hash.split('=');
+			if(hashKey && hashValue) {
+				that[hashKey] = (!isNaN(hashValue)) ? parseFloat(hashValue) : hashValue;
+				document.getElementById(hashKey).value = hashValue;
 			}
 		});
 

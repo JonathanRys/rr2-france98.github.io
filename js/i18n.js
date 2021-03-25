@@ -1,7 +1,5 @@
 'use strict';
 
-const isDev = false;
-
 let lang = 'en';
 let curTranslate = null;
 

@@ -1,3 +1,5 @@
+'use strict';
+
 window.onload = () => {
   // populate language dropdown
   if (lang !== "fr") {
@@ -105,6 +107,20 @@ window.onload = () => {
   const minuteInput = document.querySelector('#time_minute');
 
   // Update the inputs when the slider changes          
+  const handleSliderInput = (e) => {
+    const hours = Math.floor(slider.value / 60);
+    const minutes = slider.value - hours * 60;
+
+    hourInput.value = hours;
+    minuteInput.value = minutes;
+    updateTimerUi(hours, minutes, false);
+    timer_running = false;
+    clearInterval(intervalId);
+    clearInterval(clockIntervalId);
+    setIcon(null);
+  };
+
+  // Update the inputs when the slider changes          
   const handleSliderChange = (e) => {
     const hours = Math.floor(slider.value / 60);
     const minutes = slider.value - hours * 60;
@@ -112,9 +128,6 @@ window.onload = () => {
     hourInput.value = hours;
     minuteInput.value = minutes;
     updateTimerUi(hours, minutes);
-    timer_running = false;
-    clearInterval(intervalId);
-    setIcon(null);
   };
 
   // Update the slider when the input values change
@@ -126,10 +139,11 @@ window.onload = () => {
     updateTimerUi(hours, minutes);
     timer_running = false;
     clearInterval(intervalId);
+    clearInterval(clockIntervalId);
     setIcon(null);
   };
 
-  slider.addEventListener('input', handleSliderChange);
+  slider.addEventListener('input', handleSliderInput);
   slider.addEventListener('change', handleSliderChange);
   hourInput.addEventListener('input', handleTimeChange);
   minuteInput.addEventListener('input', handleTimeChange);

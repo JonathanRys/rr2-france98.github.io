@@ -14,11 +14,12 @@
     <header>
       <div class="header">
         <h1 data-i18n-key="conquest_calculator">Calculateur de Conquête</h1>
+        <div class="shadow"></div>
       </div>
     </header>
     <div id="container" class="container-fluid">
       <form class="mb-3 was-validated" action="javascript:void(0);">
-        <div class="form-group row flex-row-reverse">
+        <div class="form-group row flex-row-reverse mb-3">
           <div class="col-6 col-md-4">
             <div id="language-dropdown" data-selected-lang="en" class="dropdown p-1">
               <a class="btn btn-light dropdown-toggle float-end" href="#" role="button" data-bs-toggle="dropdown">
@@ -28,54 +29,57 @@
             </div>
           </div>
         </div>
-        <hr />
-        <div class="form-group row">
-          <div class="col-12 col-md-4">
+        <div class="row">
+          <hr />
+          <div class="form-group row">
+            <div class="col-12 col-md-4">
+            </div>
+            <div class="col-6 col-md-4 center">
+              <label class="center bold" data-i18n-key="you">Vous</label>
+            </div>
+            <div class="col-6 col-md-4 center">
+              <label class="center bold" data-i18n-key="opponent">Adversaire</label>
+            </div>
           </div>
-          <div class="col-6 col-md-4 center">
-            <label class="center bold" data-i18n-key="you">Vous</label>
+          <div class="form-group row">
+            <div class="d-none d-md-block col-md-4">
+              <label class="col-form-label" data-i18n-key="skull_needed_sv">Skulls needed (SV)</label>
+            </div>
+            <div class="col-6 col-md-4 center">
+              <div class="output bold" id="skull_team">0</div>
+            </div>
+            <div class="col-6 col-md-4 center">
+              <div class="output bold" id="skull_opponent">0</div>
+            </div>
+            <div class="icon skull"></div>
           </div>
-          <div class="col-6 col-md-4 center">
-            <label class="center bold" data-i18n-key="opponent">Adversaire</label>
+          <div class="form-group row">
+            <div class="d-none d-md-block col-md-4">
+              <label class="col-form-label" data-i18n-key="energy_per_fight">Energy per fight</label>
+            </div>
+            <div class="col-6 col-md-4 center">
+              <div class="output" id="power_team">0</div>
+            </div>
+            <div class="col-6 col-md-4 center">
+              <div class="output" id="power_opponent">0</div>
+            </div>
+            <div class="icon energy"></div>
           </div>
+          <div class="form-group row mb-3">
+            <div class="d-none d-md-block col-md-4">
+              <label class="col-form-label" data-i18n-key="rating">Rating (Attack / Defense)</label>
+            </div>
+            <div class="col-6 col-md-4 center">
+              <div class="output" id="attackdef_team">0</div>
+            </div>
+            <div class="col-6 col-md-4 center">
+              <div class="output" id="attackdef_opponent">0</div>
+            </div>
+            <div class="icon rating"></div>
+          </div>
+          <hr />
         </div>
-        <div class="form-group row">
-          <div class="d-none d-md-block col-md-4">
-            <label class="col-form-label" data-i18n-key="skull_needed_sv">Skulls needed (SV)</label>
-          </div>
-          <div class="col-6 col-md-4 center">
-            <div class="output bold" id="skull_team">0</div>
-          </div>
-          <div class="col-6 col-md-4 center">
-            <div class="output bold" id="skull_opponent">0</div>
-          </div>
-          <div class="icon skull"></div>
-        </div>
-        <div class="form-group row">
-          <div class="d-none d-md-block col-md-4">
-            <label class="col-form-label" data-i18n-key="energy_per_fight">Energy per fight</label>
-          </div>
-          <div class="col-6 col-md-4 center">
-            <div class="output" id="power_team">0</div>
-          </div>
-          <div class="col-6 col-md-4 center">
-            <div class="output" id="power_opponent">0</div>
-          </div>
-          <div class="icon energy"></div>
-        </div>
-        <div class="form-group row">
-          <div class="d-none d-md-block col-md-4">
-            <label class="col-form-label" data-i18n-key="rating">Rating (Attack / Defense)</label>
-          </div>
-          <div class="col-6 col-md-4 center">
-            <div class="output" id="attackdef_team">0</div>
-          </div>
-          <div class="col-6 col-md-4 center">
-            <div class="output" id="attackdef_opponent">0</div>
-          </div>
-          <div class="icon rating"></div>
-        </div>
-        <hr />
+
         <div class="form-group row">
           <div class="col-12 col-md-4">
             <label class="col-form-label" data-i18n-key="who_attacking">Qui attaque ?</label>
@@ -205,7 +209,7 @@
             <label class="col-form-label" data-i18n-key="ground">Terrain</label>
           </div>
           <div class="col-12 col-md-8">
-            <select class="form-select form-select-sm double" id="ground">
+            <select class="form-select form-select-sm" id="ground">
               <option selected value="0.7;1.3" data-i18n-key="ground_forest">Forêt (0.7 / 1.3)</option>
               <option value="1;0.8" data-i18n-key="ground_meadow">Prairie (1 / 0.8)</option>
               <option value="1;1" data-i18n-key="ground_swamp">Marais (1 / 1)</option>
@@ -221,7 +225,7 @@
             <label class="col-form-label" data-i18n-key="tower_level">Niveau Tour</label>
           </div>
           <div class="col-12 col-md-8">
-            <select class="form-select form-select-sm double" id="tower_level">
+            <select class="form-select form-select-sm " id="tower_level">
               <option selected value="1">0</option>
               <option value="1.2">1</option>
               <option value="1.5">2</option>

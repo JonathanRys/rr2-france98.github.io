@@ -20,9 +20,9 @@ header {
     background-color: white;
     height: 4em;
     position: fixed;
+    top: 0;
     width: 100%;
     z-index: 999;
-    top: 0;
 }
 footer {
     padding: 40px;
@@ -47,15 +47,25 @@ footer {
                 -1px 1px 1px lightgray,
                -1px -1px 1px lightgray;
 }
+.shadow {
+    border-radius: 15px;
+    box-shadow: 0 5px 15px lightgray !important;
+    height: 15px;
+    margin: auto;
+    margin-top: -4px;
+    position: relative;
+    width: 91%;
+    z-index: -1;
+}
 /* Icons */
 .icon {
+    background-position: center;
     background-repeat: no-repeat;
     background-size: 100%;
-    background-position: center;
+    height: 30px;
     position: absolute;
     right: 46%;
     width: 25px;
-    height: 30px;
 }
 .button {
     border: 1px solid darkgray;
@@ -109,11 +119,11 @@ footer {
 .exchange {
     background-image: url("/img/exchange.png");
 }
-/* Make the terrain and tower select wider */
-.double {
-    min-width: 100%;
-}
 /* Bootstrap style overrides */
+.row > .row {
+    margin: 0;
+    padding: 0;
+}
 .accordion-body {
     padding: 1rem 0;
 }
@@ -142,5 +152,9 @@ footer {
     .center-button {
         right: 32.25%;
         top: 0;
+    }
+    .shadow {
+        width: 81%;
+        margin-top: -19px;
     }
 }
