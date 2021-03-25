@@ -125,7 +125,7 @@ footer {
     padding: 0;
 }
 .accordion-body {
-    padding: 1rem 0;
+    padding: 1rem 0 0.1em;
 }
 .accordion-button {
     background-color: rgba(0,0,0,.125);

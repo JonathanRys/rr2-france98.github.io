@@ -103,7 +103,7 @@
               min="0"
               max="23"
               step="1"
-              value="24"
+              value="23"
               class="form-control form-control-sm"
               id="time_hour"
               placeholder="Hours (24)"
@@ -115,7 +115,7 @@
               min="0"
               max="59"
               step="1"
-              value="00"
+              value="59"
               class="form-control form-control-sm"
               id="time_minute"
               placeholder="Minutes (00)"
@@ -127,7 +127,7 @@
           <div class="col-md-4">
           </div>
           <div class="col-6 col-md-4">
-            <input type="range" min="0" max="1439" step="1" value="0" class="form-range slider" id="time_slider">
+            <input type="range" min="0" max="1439" step="1" value="1439" class="form-range slider" id="time_slider">
           </div>
           <div class="col-6 col-md-4">
             <div class="clock-container center">
@@ -144,6 +144,7 @@
               class="form-control form-control-sm"
               min="0"
               step="1"
+              value=0
               id="skull_win_team"
               required>
           </div>
@@ -152,6 +153,7 @@
               class="form-control form-control-sm"
               min="0"
               step="1"
+              value=0
               id="skull_win_opponent"
               required>
           </div>
@@ -234,162 +236,172 @@
             </select>
           </div>
         </div>
+        <div class="form-group row">
+          <div>
+            <button class="btn btn-sm btn-danger float-end" type="reset">Reset</button>
+          </div>
+        </div>
       </form>
-      <form class=" was-validated">
+      <form class="was-validated">
         <div class="row">
-            <div class="accordion accordion-flush" id="tech-accordion">
-              <div class="accordion-item">
-                <h2 class="accordion-header">
-                  <button class="accordion-button bold" type="button" data-bs-toggle="collapse" data-bs-target="#tech-section-collapse">
-                    Technology
-                  </button>
-                </h2>
-                <div id="tech-section-collapse" class="accordion-collapse collapse show" data-bs-parent="#tech-accordion">
-                  <div id="tech-section" class="accordion-body">
-                    <div class="form-group row">
-                      <div class="col-12 col-md-4">
-                        <label class="col-form-label" data-i18n-key="attack_value_troops">Valeur d’attaque Troupes +1</label>
-                      </div>
-                      <div class="col-6 col-md-4">
-                        <select class="form-select form-select-sm" id="attack_team_troop">
-                          <option value="1">0</option>
-                          <option value="2">1</option>
-                          <option value="3">2</option>
-                          <option value="4">3</option>
-                        </select>
-                      </div>
-                      <div class="col-6 col-md-4">
-                        <select class="form-select form-select-sm" id="attack_opponent_troop">
-                          <option value="1">0</option>
-                          <option value="2">1</option>
-                          <option value="3">2</option>
-                          <option value="4">3</option>
-                        </select>
-                      </div>
+          <div class="accordion accordion-flush" id="tech-accordion">
+            <div class="accordion-item">
+              <h2 class="accordion-header">
+                <button class="accordion-button bold" type="button" data-bs-toggle="collapse" data-bs-target="#tech-section-collapse">
+                  Technology
+                </button>
+              </h2>
+              <div id="tech-section-collapse" class="accordion-collapse collapse show" data-bs-parent="#tech-accordion">
+                <div id="tech-section" class="accordion-body">
+                  <div class="form-group row">
+                    <div class="col-12 col-md-4">
+                      <label class="col-form-label" data-i18n-key="attack_value_troops">Valeur d’attaque Troupes +1</label>
                     </div>
-                    <div class="form-group row">
-                      <div class="col-12 col-md-4">
-                        <label class="col-form-label" data-i18n-key="defense_value_troops">Valeur de défense Troupes +1</label>
-                      </div>
-                      <div class="col-6 col-md-4">
-                        <select class="form-select form-select-sm" id="def_team_troop">
-                          <option value="1">0</option>
-                          <option value="2">1</option>
-                          <option value="3">2</option>
-                          <option value="4">3</option>
-                        </select>
-                      </div>
-                      <div class="col-6 col-md-4">
-                        <select class="form-select form-select-sm" id="def_opponent_troop">
-                          <option value="1">0</option>
-                          <option value="2">1</option>
-                          <option value="3">2</option>
-                          <option value="4">3</option>
-                        </select>
-                      </div>
+                    <div class="col-6 col-md-4">
+                      <select class="form-select form-select-sm" id="attack_team_troop">
+                        <option value="1">0</option>
+                        <option value="2">1</option>
+                        <option value="3">2</option>
+                        <option value="4">3</option>
+                      </select>
                     </div>
+                    <div class="col-6 col-md-4">
+                      <select class="form-select form-select-sm" id="attack_opponent_troop">
+                        <option value="1">0</option>
+                        <option value="2">1</option>
+                        <option value="3">2</option>
+                        <option value="4">3</option>
+                      </select>
+                    </div>
+                  </div>
+                  <div class="form-group row">
+                    <div class="col-12 col-md-4">
+                      <label class="col-form-label" data-i18n-key="defense_value_troops">Valeur de défense Troupes +1</label>
+                    </div>
+                    <div class="col-6 col-md-4">
+                      <select class="form-select form-select-sm" id="def_team_troop">
+                        <option value="1">0</option>
+                        <option value="2">1</option>
+                        <option value="3">2</option>
+                        <option value="4">3</option>
+                      </select>
+                    </div>
+                    <div class="col-6 col-md-4">
+                      <select class="form-select form-select-sm" id="def_opponent_troop">
+                        <option value="1">0</option>
+                        <option value="2">1</option>
+                        <option value="3">2</option>
+                        <option value="4">3</option>
+                      </select>
+                    </div>
+                  </div>
 
-                    <div class="form-group row">
-                      <div class="col-12 col-md-4">
-                        <label class="col-form-label" data-i18n-key="attack_value_heroes">Valeur d’attaque Héros +5</label>
-                      </div>
-                      <div class="col-6 col-md-4">
-                        <select class="form-select form-select-sm" id="attack_team_hero">
-                          <option value="0">0</option>
-                          <option value="5">1</option>
-                          <option value="10">2</option>
-                          <option value="15">3</option>
-                        </select>
-                      </div>
-                      <div class="col-6 col-md-4">
-                        <select class="form-select form-select-sm" id="attack_opponent_hero">
-                          <option value="0">0</option>
-                          <option value="5">1</option>
-                          <option value="10">2</option>
-                          <option value="15">3</option>
-                        </select>
-                      </div>
+                  <div class="form-group row">
+                    <div class="col-12 col-md-4">
+                      <label class="col-form-label" data-i18n-key="attack_value_heroes">Valeur d’attaque Héros +5</label>
                     </div>
-                    <div class="form-group row">
-                      <div class="col-12 col-md-4">
-                        <label class="col-form-label" data-i18n-key="defense_value_heroes">Valeur de défense Héros +5</label>
-                      </div>
-                      <div class="col-6 col-md-4">
-                        <select class="form-select form-select-sm" id="def_team_hero">
-                          <option value="0">0</option>
-                          <option value="5">1</option>
-                          <option value="10">2</option>
-                          <option value="15">3</option>
-                        </select>
-                      </div>
-                      <div class="col-6 col-md-4">
-                        <select class="form-select form-select-sm" id="def_opponent_hero">
-                          <option value="0">0</option>
-                          <option value="5">1</option>
-                          <option value="10">2</option>
-                          <option value="15">3</option>
-                        </select>
-                      </div>
+                    <div class="col-6 col-md-4">
+                      <select class="form-select form-select-sm" id="attack_team_hero">
+                        <option value="0">0</option>
+                        <option value="5">1</option>
+                        <option value="10">2</option>
+                        <option value="15">3</option>
+                      </select>
                     </div>
+                    <div class="col-6 col-md-4">
+                      <select class="form-select form-select-sm" id="attack_opponent_hero">
+                        <option value="0">0</option>
+                        <option value="5">1</option>
+                        <option value="10">2</option>
+                        <option value="15">3</option>
+                      </select>
+                    </div>
+                  </div>
+                  <div class="form-group row">
+                    <div class="col-12 col-md-4">
+                      <label class="col-form-label" data-i18n-key="defense_value_heroes">Valeur de défense Héros +5</label>
+                    </div>
+                    <div class="col-6 col-md-4">
+                      <select class="form-select form-select-sm" id="def_team_hero">
+                        <option value="0">0</option>
+                        <option value="5">1</option>
+                        <option value="10">2</option>
+                        <option value="15">3</option>
+                      </select>
+                    </div>
+                    <div class="col-6 col-md-4">
+                      <select class="form-select form-select-sm" id="def_opponent_hero">
+                        <option value="0">0</option>
+                        <option value="5">1</option>
+                        <option value="10">2</option>
+                        <option value="15">3</option>
+                      </select>
+                    </div>
+                  </div>
 
-                    <div class="form-group row">
-                      <div class="col-12 col-md-4">
-                        <label class="col-form-label" data-i18n-key="defense_modifier_watchtower">Modificateur de défense de Tour +%</label>
-                      </div>
-                      <div class="col-6 col-md-4">
-                        <select class="form-select form-select-sm" id="team_tower">
-                          <option value="0">0</option>
-                          <option value="0.1">10</option>
-                          <option value="0.2">20</option>
-                          <option value="0.3">30</option>
-                          <option value="0.4">40</option>
-                          <option value="0.5">50</option>
-                          <option value="0.6">60</option>
-                        </select>
-                      </div>
-                      <div class="col-6 col-md-4">
-                        <select class="form-select form-select-sm" id="opponent_tower">
-                          <option value="0">0</option>
-                          <option value="0.1">10</option>
-                          <option value="0.2">20</option>
-                          <option value="0.3">30</option>
-                          <option value="0.4">40</option>
-                          <option value="0.5">50</option>
-                          <option value="0.6">60</option>
-                        </select>
-                      </div>
+                  <div class="form-group row">
+                    <div class="col-12 col-md-4">
+                      <label class="col-form-label" data-i18n-key="defense_modifier_watchtower">Modificateur de défense de Tour +%</label>
                     </div>
-                    <div class="form-group row">
-                      <div class="col-12 col-md-4">
-                        <label class="col-form-label" data-i18n-key="energy_cost_war">Coût en énergie Guerre -%</label>
-                      </div>
-                      <div class="col-6 col-md-4">
-                        <select class="form-select form-select-sm" id="team_power">
-                          <option value="1">0</option>
-                          <option value="0.9">10</option>
-                          <option value="0.8">20</option>
-                          <option value="0.7">30</option>
-                          <option value="0.6">40</option>
-                          <option value="0.5">50</option>
-                          <option value="0.4">60</option>
-                        </select>
-                      </div>
-                      <div class="col-6 col-md-4">
-                        <select class="form-select form-select-sm" id="opponent_power">
-                          <option value="1">0</option>
-                          <option value="0.9">10</option>
-                          <option value="0.8">20</option>
-                          <option value="0.7">30</option>
-                          <option value="0.6">40</option>
-                          <option value="0.5">50</option>
-                          <option value="0.4">60</option>
-                        </select>
-                      </div>
+                    <div class="col-6 col-md-4">
+                      <select class="form-select form-select-sm" id="team_tower">
+                        <option value="0">0</option>
+                        <option value="0.1">10</option>
+                        <option value="0.2">20</option>
+                        <option value="0.3">30</option>
+                        <option value="0.4">40</option>
+                        <option value="0.5">50</option>
+                        <option value="0.6">60</option>
+                      </select>
+                    </div>
+                    <div class="col-6 col-md-4">
+                      <select class="form-select form-select-sm" id="opponent_tower">
+                        <option value="0">0</option>
+                        <option value="0.1">10</option>
+                        <option value="0.2">20</option>
+                        <option value="0.3">30</option>
+                        <option value="0.4">40</option>
+                        <option value="0.5">50</option>
+                        <option value="0.6">60</option>
+                      </select>
+                    </div>
+                  </div>
+                  <div class="form-group row">
+                    <div class="col-12 col-md-4">
+                      <label class="col-form-label" data-i18n-key="energy_cost_war">Coût en énergie Guerre -%</label>
+                    </div>
+                    <div class="col-6 col-md-4">
+                      <select class="form-select form-select-sm" id="team_power">
+                        <option value="1">0</option>
+                        <option value="0.9">10</option>
+                        <option value="0.8">20</option>
+                        <option value="0.7">30</option>
+                        <option value="0.6">40</option>
+                        <option value="0.5">50</option>
+                        <option value="0.4">60</option>
+                      </select>
+                    </div>
+                    <div class="col-6 col-md-4">
+                      <select class="form-select form-select-sm" id="opponent_power">
+                        <option value="1">0</option>
+                        <option value="0.9">10</option>
+                        <option value="0.8">20</option>
+                        <option value="0.7">30</option>
+                        <option value="0.6">40</option>
+                        <option value="0.5">50</option>
+                        <option value="0.4">60</option>
+                      </select>
                     </div>
                   </div>
                 </div>
               </div>
             </div>
+          </div>
+        </div>
+        <div class="form-group row">
+          <div>
+            <button class="btn btn-sm btn-danger float-end" type="reset">Reset</button>
+          </div>
         </div>
       </form>
     </div>
