@@ -155,6 +155,9 @@ footer {
     }
     .shadow {
         width: 81%;
-        margin-top: -19px;
+        margin-top: -15px;
+    }
+    .header-text {
+        margin-top: -5px;
     }
 }
