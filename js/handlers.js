@@ -92,7 +92,7 @@ window.onload = () => {
     opponent.dataset.i18nKey = i18nTmp;
 
     if (calc) {
-      calc[e.target.id] = (!isNaN(e.target.value)) ? parseFloat(e.target.value) : e.target.value;
+      calc['attacker'] = attacker.value;
       calc.render();
     }
   });
@@ -149,4 +149,13 @@ window.onload = () => {
   minuteInput.addEventListener('input', handleTimeChange);
 
   // Reset buttons
+  document.querySelector('form').addEventListener('click', (e) => {
+    switch (e.target.tagName) {
+    case 'BUTTON':
+      calc.reset();
+      break;
+    default:
+      
+    }
+  });
 };

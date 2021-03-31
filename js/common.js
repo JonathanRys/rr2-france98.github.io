@@ -25,6 +25,14 @@ let clockIntervalId = null;
 // i18n filename prefix
 const i18n_file = "conquest";
 
+const createTarget = (target, value=0) => {
+  const kvPair = {};
+  kvPair['id'] = target;
+  kvPair['value'] = value;
+
+  return {target: {...kvPair}};
+}
+
 const update = (e, updateHash=true) => {
   /*
   Calculates the new values and updates the UI

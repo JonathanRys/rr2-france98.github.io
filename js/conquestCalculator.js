@@ -8,20 +8,22 @@
 */
 class Calculator {
 	constructor() {
-		// Save DOM render output
-		[
+		this.outputs = [
 			'skull_team',
 			'skull_opponent',
 			'power_team',
 			'power_opponent',
 			'attackdef_team',
 			'attackdef_opponent'
-		].forEach(k => {
+		];
+
+		// Save DOM render output
+		this.outputs.forEach(k => {
 			this[k] = document.getElementById(k);
 		});
 
 		// Set default numeric value
-		[
+		this.inputs = [
 			'skull_win_team',
 			'skull_win_opponent',
 			'nb_player_team',
@@ -34,18 +36,22 @@ class Calculator {
 			'def_opponent_hero',
 			'team_tower',
 			'opponent_tower'
-		].forEach(k => {
+		];
+
+		this.inputs.forEach(k => {
 			this[k] = 0;
 		});
 
-		[
+		this.tech = [
 			'attack_team_troop',
 			'attack_opponent_troop',
 			'def_team_troop',
 			'def_opponent_troop',
 			'team_power',
 			'opponent_power'
-		].forEach(k => {
+		];
+
+		this.tech.forEach(k => {
 			this[k] = 1;
 		});
 
@@ -79,7 +85,11 @@ class Calculator {
 			[8, 1],
 			[this.time_hour + (this.time_minute / 60), null]
 		];
-	}		
+	}
+
+	createTargets() {
+		return [...this.inputs, ...this.tech].map(target => createTarget(target));
+	}
 
 	render() {
 		// Time remaining (Hours)
@@ -87,16 +97,16 @@ class Calculator {
 
 		// Time modifier
 		const e2Calc = regression(
-			'polynomial', 
+			'polynomial',
 			this.getTimeMatrix(),
 			1
 		);
 
 		const e2 = (d2 >= 8) ?
-		    e2Calc.points[2][1] : 
+		    e2Calc.points[2][1] :
 		    1;
 
-		// Calculate Attack/Defense Ratings
+		// Attack/Defense Ratings
 		let totalAttackValue = 0;
 		let totalDefenseValue = 0;
 
@@ -110,13 +120,13 @@ class Calculator {
             // Calculate attack ratings
             const heroAttackValue = this.nb_player_team * (this.const_basedAttackHeroesValue + this.attack_team_hero);
             const troopAttackValue = this.nb_troop_team * this.attack_team_troop;
-            
+
             totalAttackValue = Math.round((heroAttackValue + troopAttackValue) * groundAttacker);
 
             // Calculate defense ratings
             const heroDefenseValue = this.nb_player_opponent * (this.const_basedAttackHeroesValue + this.def_opponent_hero);
             const troopDefenseValue = this.nb_troop_opponent * this.def_opponent_troop;
-            
+
             totalDefenseValue = Math.round((heroDefenseValue + troopDefenseValue) * towerBonus(this.opponent_tower));
 
         } else {
@@ -157,6 +167,25 @@ class Calculator {
 
         this.power_team.innerText = this.formatNumber(power_team);
         this.power_opponent.innerText  = this.formatNumber(power_opponent);
+	}
+
+	reset() {
+		// Clear the outputs
+		this.outputs.forEach(output => {
+			this[output].innerText = 0;
+			document.querySelector(`#${output}`).innerText = 0;
+		});
+
+		// Update the hash
+		const targets = [
+		    createTarget('attacker', 'team'),
+		    createTarget('time_hour', 23),
+		    createTarget('time_minute', 59),
+		    createTarget('time_slider', 1439),
+		    ...this.createTargets()
+		];
+
+		targets.forEach(update);
 	}
 
 	formatNumber(num) {
