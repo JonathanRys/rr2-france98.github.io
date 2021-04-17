@@ -18,7 +18,7 @@
       </div>
     </header>
     <div id="container" class="container-fluid">
-      <form class="mb-3 was-validated" action="javascript:void(0);">
+      <form id="calc-form" class="mb-3 was-validated" action="javascript:void(0);">
         <div class="form-group row flex-row-reverse mb-3">
           <div class="col-6 col-md-4">
             <div id="language-dropdown" data-selected-lang="en" class="dropdown p-1">
@@ -227,7 +227,7 @@
             <label class="col-form-label" data-i18n-key="tower_level">Niveau Tour</label>
           </div>
           <div class="col-12 col-md-8">
-            <select class="form-select form-select-sm " id="tower_level">
+            <select class="form-select form-select-sm" id="tower_level">
               <option selected value="1">0</option>
               <option value="1.2">1</option>
               <option value="1.5">2</option>
@@ -238,11 +238,11 @@
         </div>
         <div class="form-group row">
           <div>
-            <button class="btn btn-sm btn-danger float-end" type="reset">Reset</button>
+            <button id="calc-reset" class="btn btn-sm btn-danger float-end" type="reset">Reset</button>
           </div>
         </div>
       </form>
-      <form class="was-validated">
+      <form id="tech-form" class="was-validated">
         <div class="row">
           <div class="accordion accordion-flush" id="tech-accordion">
             <div class="accordion-item">
@@ -355,7 +355,7 @@
                       </select>
                     </div>
                     <div class="col-6 col-md-4">
-                      <select class="form-select form-select-sm" id="opponent_tower">
+                      <select default="0" class="form-select form-select-sm" id="opponent_tower">
                         <option value="0">0</option>
                         <option value="0.1">10</option>
                         <option value="0.2">20</option>
@@ -371,7 +371,7 @@
                       <label class="col-form-label" data-i18n-key="energy_cost_war">Coût en énergie Guerre -%</label>
                     </div>
                     <div class="col-6 col-md-4">
-                      <select class="form-select form-select-sm" id="team_power">
+                      <select default="1" class="form-select form-select-sm" id="team_power">
                         <option value="1">0</option>
                         <option value="0.9">10</option>
                         <option value="0.8">20</option>
@@ -382,7 +382,7 @@
                       </select>
                     </div>
                     <div class="col-6 col-md-4">
-                      <select class="form-select form-select-sm" id="opponent_power">
+                      <select defaultValue="1" class="form-select form-select-sm" id="opponent_power">
                         <option value="1">0</option>
                         <option value="0.9">10</option>
                         <option value="0.8">20</option>
@@ -396,14 +396,13 @@
                 </div>
                 <div class="form-group row">
                   <div>
-                    <button class="btn btn-sm btn-danger float-end" type="reset">Reset</button>
+                    <button id="tech-reset" class="btn btn-sm btn-danger float-end" type="reset">Reset</button>
                   </div>
                 </div>
               </div>
             </div>
           </div>
         </div>
-
       </form>
     </div>
     <footer>

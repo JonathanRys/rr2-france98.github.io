@@ -1,3 +1,5 @@
+'use strict';
+
 const updateTimerUi = (hour, minute, updateHash=true) => {
     /*
     Updates the hour and minute and the url
@@ -7,34 +9,14 @@ const updateTimerUi = (hour, minute, updateHash=true) => {
     */
 
     inputs = [
-        {id: 'time_hour', value: hour},
-        {id: 'time_minute', value: minute},
-        {id: 'time_slider', value: hour * 60 + +minute}
+        createTarget('time_hour', hour),
+        createTarget('time_minute', minute),
+        createTarget('time_slider', hour * 60 + +minute)
     ];
 
     for (const input of inputs) {
         document.querySelector(`#${input.id}`).value = input.value;
-        update({target: input}, updateHash);
-    }
-};
-
-'use strict';
-
-const setIcon = (hour) => {
-    /*
-    Sets the timer icon on an element with the id "timer"
-
-    @param hour: hour on the clock face
-    */
-
-    const timeIcons = ['🕛', '🕐', '🕑', '🕒', '🕓', '🕔', '🕕', '🕖', '🕗', '🕘', '🕙', '🕚'];
-    const timer = document.querySelector('#timer');
-
-    if (hour === null) {
-        // set the timer icon to 0
-        timer.innerText = '⏲️';
-    } else {
-        timer.innerText = timeIcons[hour % 12];
+        update(input, updateHash);
     }
 };
 
@@ -87,7 +69,7 @@ const updateEveryFiveSeconds = () => {
     clockIntervalId = setInterval(() => {
         if (interval < 0) {
             clearInterval(clockIntervalId);
-            return
+            return;
         }
         setIcon(interval--);
     }, 5000);
@@ -105,11 +87,7 @@ const updateEveryMinute = () => {
 
     if (timer_running) {
         // toggle the timer off
-        timer_running = false;
-        clearInterval(intervalId);
-        clearInterval(clockIntervalId);
-        setIcon(null);
-        return;
+        return resetTimer();
     }
 
     timer_running = true
@@ -117,7 +95,7 @@ const updateEveryMinute = () => {
     // One minute is 60000 milliseconds
     const MINUTE = 60000;
 
-    const startHour =  document.querySelector('#time_hour').value;
+    const startHour = document.querySelector('#time_hour').value;
     const startMinute = document.querySelector('#time_minute').value;
 
     // Set the icon
@@ -126,6 +104,7 @@ const updateEveryMinute = () => {
 
     const clockHandler = (hour, minute) => {
         updateTimerUi(hour, minute);
+        clearInterval(clockIntervalId);
         updateEveryFiveSeconds();
     };
 
