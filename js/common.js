@@ -1,17 +1,4 @@
 'use strict';
-
-// Data for the language selector
-const languageData = [{
-    lang: 'fr',
-    label: 'Français'
-}, {
-    lang: 'en',
-    label: 'English'
-}, {
-    lang: 'es',
-    label: 'Español'
-}];
-
 // flag to enable logging
 const isDev = false;
 // Create calculator instance
@@ -32,7 +19,7 @@ const createTarget = (target, value) => {
     if (!value && typeof target === 'string') {
         const targetElem = document.querySelector(`#${target}`);
         // How to tell what the value is?
-        value = calc.getDefault(target) || 0;
+        value = calc.getDefault(target);
     }
 
     const kvPair = {};
@@ -59,9 +46,9 @@ const setIcon = hour => {
 
     if (hour === null) {
         // set the timer icon to 0
-        timer.innerText = '⏲️';
+        timer.textContent = '⏲️';
     } else {
-        timer.innerText = timeIcons[hour % 12];
+        timer.textContent = timeIcons[hour % 12];
     }
 };
 
@@ -69,22 +56,24 @@ const resetTeam = (attacker='team') => {
     /*
     Resets the Attacker / Defender
     */
-    update(createTarget('attacker', attacker));
-
     // Reset the attacker / defender UI
+    const team = document.querySelector('#team')
+    const opponent = document.querySelector('#opponent')
     switch (attacker) {
     case 'team':
-        team.innerText = 'Attacker';
-        opponent.innerText = 'Defender';
+        team.textContent = 'Attacker';
+        opponent.textContent = 'Defender';
         // reset i18n
         team.dataset.i18nKey = 'attacker';
         opponent.dataset.i18nKey = 'defender';
+        break;
     case 'opponent':    
-        team.innerText = 'Defender';
-        opponent.innerText = 'Attacker';
+        team.textContent = 'Defender';
+        opponent.textContent = 'Attacker';
         // reset i18n
         team.dataset.i18nKey = 'defender';
         opponent.dataset.i18nKey = 'attacker';
+        break;
     }
 }
 
@@ -126,7 +115,6 @@ const update = (e, updateHash=true) => {
         if (document.location.hash.indexOf(e.target.id + '=') === -1) {
             document.location.hash += '&' + newHash;
         } else {
-            console.log('updating hash:', newHash)
             document.location.hash = document.location.hash.replace(replaceRegex, newHash)
         }
     }

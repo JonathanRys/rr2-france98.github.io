@@ -48,6 +48,12 @@ class Calculator {
             'attack_opponent_troop',
             'def_team_troop',
             'def_opponent_troop',
+            'team_tower',
+            'attack_team_hero',
+            'attack_opponent_hero',
+            'def_team_hero',
+            'def_opponent_hero',
+            'opponent_tower',
             'team_power',
             'opponent_power'
         ];
@@ -56,20 +62,26 @@ class Calculator {
             this[k] = 1;
         });
 
+        // Non-zero default values
         this.default = {
             attacker: "team",
             ground: "0.7;1.3",
             time_hour: 23,
             time_minute: 0,
             time_slider: 1380,
-            tower_level: 1
+            tower_level: 1,
+            attack_team_troop: 1,
+            attack_opponent_troop: 1,
+            def_team_troop: 1,
+            def_opponent_troop: 1,
+            team_power: 1,
+            opponent_power: 1
         };
 
         // Set others default
         this.attacker    = this.default.attacker
         this.ground      = this.default.ground
         this.time_hour   = this.default.time_hour
-        this.time_minute = this.default.time_minute
         this.time_slider = this.default.time_slider
         this.tower_level = this.default.tower_level
 
@@ -91,7 +103,7 @@ class Calculator {
     }
 
     getDefault(id) {
-    	return this.default[id];
+    	return this.default[id] || 0;
     }
 
     getTimeMatrix() {
@@ -182,6 +194,7 @@ class Calculator {
     resetCalc() {
         // Clear the outputs
         this.outputs.forEach(output => {
+            console.log('output:', output)
             this[output].innerText = 0;
             document.querySelector(`#${output}`).innerText = 0;
         });
@@ -196,7 +209,7 @@ class Calculator {
         // update takes a second param but forEach passes an index
         // so wrap and call it with only one parameter
         targets.forEach(target => update(target));
-        resetTeam();
+        resetTeam(this.default.attacker);
         resetTimer();
     }
 

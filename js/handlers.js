@@ -1,5 +1,17 @@
 'use strict';
 
+// Data for the language selector
+const languageData = [{
+    lang: 'fr',
+    label: 'Français'
+}, {
+    lang: 'en',
+    label: 'English'
+}, {
+    lang: 'es',
+    label: 'Español'
+}];
+
 window.onload = () => {
     // populate language dropdown
     if (lang !== "fr") {
