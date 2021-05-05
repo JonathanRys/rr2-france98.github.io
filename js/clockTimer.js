@@ -15,7 +15,7 @@ const updateTimerUi = (hour, minute, updateHash=true) => {
     ];
 
     for (const input of inputs) {
-        document.querySelector(`#${input.id}`).value = input.value;
+        document.querySelector(`#${input.target.id}`).value = input.target.value;
         update(input, updateHash);
     }
 };

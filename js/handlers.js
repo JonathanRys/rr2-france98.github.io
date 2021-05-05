@@ -100,50 +100,50 @@ window.onload = () => {
         }
     });
 
-    // Timer
-    const timerButton = document.querySelector('#timer');
-    timerButton.addEventListener('click', updateEveryMinute);
+    // // Timer
+    // const timerButton = document.querySelector('#timer');
+    // timerButton.addEventListener('click', updateEveryMinute);
 
-    // Slider
-    const slider = document.querySelector('#time_slider');
-    const hourInput = document.querySelector('#time_hour');
-    const minuteInput = document.querySelector('#time_minute');
+    // // Slider
+    // const slider = document.querySelector('#time_slider');
+    // const hourInput = document.querySelector('#time_hour');
+    // const minuteInput = document.querySelector('#time_minute');
 
-    // Update the inputs when the slider changes
-    const handleSliderInput = (e) => {
-        const hours = Math.floor(slider.value / 60);
-        const minutes = slider.value - hours * 60;
+    // // Update the inputs when the slider changes
+    // const handleSliderInput = (e) => {
+    //     const hours = Math.floor(slider.value / 60);
+    //     const minutes = slider.value - hours * 60;
 
-        hourInput.value = hours;
-        minuteInput.value = minutes;
-        updateTimerUi(hours, minutes, false);
-        resetTimer();
-    };
+    //     hourInput.value = hours;
+    //     minuteInput.value = minutes;
+    //     updateTimerUi(hours, minutes, false);
+    //     resetTimer();
+    // };
 
-    // Update the inputs when the slider changes
-    const handleSliderChange = (e) => {
-        const hours = Math.floor(slider.value / 60);
-        const minutes = slider.value - hours * 60;
+    // // Update the inputs when the slider changes
+    // const handleSliderChange = (e) => {
+    //     const hours = Math.floor(slider.value / 60);
+    //     const minutes = slider.value - hours * 60;
 
-        hourInput.value = hours;
-        minuteInput.value = minutes;
-        updateTimerUi(hours, minutes);
-    };
+    //     hourInput.value = hours;
+    //     minuteInput.value = minutes;
+    //     updateTimerUi(hours, minutes);
+    // };
 
-    // Update the slider when the input values change
-    const handleTimeChange = () => {
-        const hours = hourInput.value;
-        const minutes = minuteInput.value;
+    // // Update the slider when the input values change
+    // const handleTimeChange = () => {
+    //     const hours = hourInput.value;
+    //     const minutes = minuteInput.value;
         
-        slider.value = hours * 60 + +minutes;
-        updateTimerUi(hours, minutes);
-        resetTimer();
-    };
+    //     slider.value = hours * 60 + +minutes;
+    //     updateTimerUi(hours, minutes);
+    //     resetTimer();
+    // };
 
-    slider.addEventListener('input', handleSliderInput);
-    slider.addEventListener('change', handleSliderChange);
-    hourInput.addEventListener('input', handleTimeChange);
-    minuteInput.addEventListener('input', handleTimeChange);
+    // slider.addEventListener('input', handleSliderInput);
+    // slider.addEventListener('change', handleSliderChange);
+    // hourInput.addEventListener('input', handleTimeChange);
+    // minuteInput.addEventListener('input', handleTimeChange);
 
     // Form buttons
     document.querySelector('#tech-form').addEventListener('reset', (e) => {

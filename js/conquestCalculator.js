@@ -95,7 +95,10 @@ class Calculator {
             const [hashKey, hashValue] = hash.split('=');
             if(hashKey && hashValue) {
                 _this[hashKey] = (!isNaN(hashValue)) ? parseFloat(hashValue) : hashValue;
-                document.getElementById(hashKey).value = hashValue;
+                const target = document.getElementById(hashKey)
+                if (target) {
+                    target.value = hashValue;
+                }
             }
         });
 
@@ -194,7 +197,6 @@ class Calculator {
     resetCalc() {
         // Clear the outputs
         this.outputs.forEach(output => {
-            console.log('output:', output)
             this[output].innerText = 0;
             document.querySelector(`#${output}`).innerText = 0;
         });

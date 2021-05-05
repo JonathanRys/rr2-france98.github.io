@@ -41,15 +41,15 @@ const setIcon = hour => {
     @param hour: hour on the clock face
     */
 
-    const timeIcons = ['🕛', '🕐', '🕑', '🕒', '🕓', '🕔', '🕕', '🕖', '🕗', '🕘', '🕙', '🕚'];
-    const timer = document.querySelector('#timer');
+    // const timeIcons = ['🕛', '🕐', '🕑', '🕒', '🕓', '🕔', '🕕', '🕖', '🕗', '🕘', '🕙', '🕚'];
+    // const timer = document.querySelector('#timer');
 
-    if (hour === null) {
-        // set the timer icon to 0
-        timer.textContent = '⏲️';
-    } else {
-        timer.textContent = timeIcons[hour % 12];
-    }
+    // if (hour === null) {
+    //     // set the timer icon to 0
+    //     timer.textContent = '⏲️';
+    // } else {
+    //     timer.textContent = timeIcons[hour % 12];
+    // }
 };
 
 const resetTeam = (attacker='team') => {
