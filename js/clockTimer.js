@@ -8,7 +8,7 @@ const updateTimerUi = (hour, minute, updateHash=true) => {
     @param minute: minutes left
     */
 
-    inputs = [
+    const inputs = [
         createTarget('time_hour', hour),
         createTarget('time_minute', minute),
         createTarget('time_slider', hour * 60 + +minute)
